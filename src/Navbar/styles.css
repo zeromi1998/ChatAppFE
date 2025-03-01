@@ -1,0 +1,22 @@
+.navbar {
+
+  background-color: rgba(141, 9, 130, 0.671);
+  width: 100vw;
+  height: 50px;
+  padding: 10px;
+}
+
+.navbar-list {
+    display: flex
+    ;
+        list-style: none;
+        height: 100%;
+        align-items: center;
+}
+
+.navbar-list li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+  padding: 20px;
+}
