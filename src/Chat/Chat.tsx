@@ -19,7 +19,7 @@ const ChatPage = (props: any) => {
     if (!socketRef.current) {
       socketRef.current = io("http://localhost:8000");
 
-      socketRef.current.emit("register", userData.email);
+      socketRef.current.emit("register", userData?.email);
 
       //   socketRef.current.on("connect", () => {
       //     console.log("Fetching messages for:", state.emailId);
@@ -34,7 +34,7 @@ const ChatPage = (props: any) => {
 
       console.log("this is useeffect 2");
 
-      if (state.emailId) {
+      if (state?.emailId) {
         // console.log("Fetching messages for:", state.emailId);
 
         // Emit event to request messages for the selected chat

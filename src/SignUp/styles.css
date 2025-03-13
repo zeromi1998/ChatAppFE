@@ -50,3 +50,23 @@ label {
     top: 90%;
     transform: translate(-50%, -50%);
 }
+
+.errorClass{
+    color: red;
+    margin-left: 10%;
+    padding: 10px 0;
+    font-size: 15px;
+}
+
+.modalBox{
+    left: 31% !important;
+   background-color: rgb(25, 25, 146) !important;
+   width: 30% !important;
+   margin: 10px !important;
+   color: white !important;
+    
+  }
+
+  .modalP{
+    text-align: center;
+  }

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./styles.css";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const UsersPage = () => {
   const [usersData, setUserData] = useState([]);
+  const localStorageValue = localStorage.getItem("userData");
+  const userData = JSON.parse(localStorageValue!);
   const navigate = useNavigate();
   useEffect(() => {
     getUsers();
@@ -22,30 +24,26 @@ const UsersPage = () => {
     }
   };
 
-  const goToChatPage = (data:any)=>{
-    console.log("this is userdata",data);
-    navigate("/chat",{state:data});
-  }
+  const goToChatPage = (data: any) => {
+    console.log("this is userdata", data);
+    navigate(`/chat/${data._id}`, { state: data });
+  };
   return (
     <div className="flexbox-container">
-        {usersData.map((data:any)=>{
-            return <div>
+      {usersData.map((data: any) => {
+        return (
+          <>
+            {data.emailId != userData.email ? (
+              <div>
                 <p>{data.name}</p>
-                <button onClick={()=>goToChatPage(data)}>Chat</button>
-            </div>
-        })}
-      {/* <div>
-        <h4>User2</h4>
-      </div>
-      <div>
-        <h4>User2</h4>
-      </div>
-      <div>
-        <h4>User2</h4>
-      </div>
-      <div>
-        <h4>User2</h4>
-      </div> */}
+                <button onClick={() => goToChatPage(data)}>Chat</button>
+              </div>
+            ) : (
+              ""
+            )}
+          </>
+        );
+      })}
     </div>
   );
 };

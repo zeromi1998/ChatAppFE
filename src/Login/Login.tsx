@@ -5,6 +5,10 @@ import "./styles.css";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [error,setError] = useState({
+    emailError:"",
+    password:""
+  })
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -21,8 +25,31 @@ const Login = () => {
     });
   };
 
+  const formValidation =()=>{
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    let isValid = false;
+
+    if(!emailPattern.test(userData.email)){
+      
+      isValid = true
+      setError((preVal)=>{
+        return {
+          ...preVal,
+          emailError: "Please enter valid email Id"
+        }
+      })
+
+    }
+    return isValid;
+  } 
+
   const submitForm = async(e: any) => {
     e.preventDefault();
+    if(formValidation()){
+      return
+    }
     console.log("this is userData", userData);
     try {
     const userLogin  = await axios.post("http://localhost:8000/login",{ 
@@ -55,6 +82,7 @@ const Login = () => {
           value={userData.email}
           name="email"
         />
+        {error.emailError ? <span className="errorClass">{error.emailError}</span> : ""}
         <label>Password</label>
         <input
         className="login-input"

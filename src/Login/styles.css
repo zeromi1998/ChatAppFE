@@ -49,3 +49,10 @@ label {
     top: 90%;
     transform: translate(-50%, -50%);
 }
+
+.errorClass{
+    color: red;
+    margin-left: 10%;
+    padding: 10px 0;
+    font-size: 15px;
+}
