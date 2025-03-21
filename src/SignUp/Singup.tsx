@@ -5,6 +5,7 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
+import { localhostUrl, prodUrl } from "../constant";
 const SignUp = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
@@ -29,6 +30,7 @@ const SignUp = () => {
   const [openModel, setOpenModel] = useState(false);
 
   const [error, setError] = useState({
+    formError: "",
     emailError: "",
     passwordError: "",
   });
@@ -46,7 +48,7 @@ const SignUp = () => {
   const formValidation = () => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let isValid = false;
-    console.log("this is new rgister user", "formvalidtion");
+    // console.log("this is new rgister user", "formvalidtion");
 
     if (!emailPattern.test(userData.email)) {
       isValid = true;
@@ -83,12 +85,11 @@ const SignUp = () => {
   };
   const submitForm = async (e: any) => {
     e.preventDefault();
-    console.log("this is sign up form", userData);
     if (formValidation()) {
       return;
     }
     try {
-      const registerUser = await axios.post("http://localhost:8000/signUp", {
+      const registerUser = await axios.post(`${prodUrl}/signUp`, {
         emailId: userData.email,
         name: userData.name,
         password: userData.password,
@@ -97,10 +98,14 @@ const SignUp = () => {
       if (registerUser) {
         setOpenModel(true);
       }
-
-      console.log("this is new rgister user", error);
     } catch (error: any) {
-      console.log("this is sign up error", error);
+      console.log("this is sign up error", error.response.data.message);
+      setError((preVal) => {
+        return {
+          ...preVal,
+          formError: error.response.data.message,
+        };
+      });
       throw new Error(error);
     }
   };
@@ -124,6 +129,9 @@ const SignUp = () => {
       </Modal>
       <div className="signUpForm">
         <h2>Let's create an account</h2>
+        <span className="errorClass">
+          {error.formError ? error.formError : ""}
+        </span>
         <form onSubmit={submitForm}>
           <label>Your Name</label>
           <input

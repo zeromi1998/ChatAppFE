@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
+import { localhostUrl, prodUrl } from "../constant";
+import defaultIMg from "../assets/user.jpg";
 const UsersPage = () => {
   const [usersData, setUserData] = useState([]);
   const localStorageValue = localStorage.getItem("userData");
@@ -13,8 +15,7 @@ const UsersPage = () => {
 
   const getUsers = async () => {
     try {
-      const users = await axios("http://localhost:8000/getUsers");
-      console.log("this is get user data", users);
+      const users = await axios(`${prodUrl}/getUsers`);
       if (users) {
         setUserData(users.data);
       }
@@ -25,7 +26,6 @@ const UsersPage = () => {
   };
 
   const goToChatPage = (data: any) => {
-    console.log("this is userdata", data);
     navigate(`/chat/${data._id}`, { state: data });
   };
   return (
@@ -35,8 +35,13 @@ const UsersPage = () => {
           <>
             {data.emailId != userData.email ? (
               <div>
-                <p>{data.name}</p>
-                <button onClick={() => goToChatPage(data)}>Chat</button>
+                <div className="childDivImg">
+                  <img src={defaultIMg} alt="defaultImg" />
+                </div>
+                <div className="childDiv">
+                  <p>{data.name}</p>
+                  <button onClick={() => goToChatPage(data)}>Chat</button>
+                </div>
               </div>
             ) : (
               ""

@@ -8,7 +8,6 @@ const PrivateRoute = ({ children }: any) => {
 
   if (userData && userData.token) {
     isAuthenticated = true;
-    console.log("this is prvte", children);
   }
 
   return isAuthenticated ? children : <Navigate to="/login" />;
