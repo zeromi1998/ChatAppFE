@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import "./styles.css";
 import { useLocation } from "react-router-dom";
-import { localhostUrl, prodUrl } from "../constant";
+import { _localhostUrl, prodUrl } from "../constant";
 import CircularProgress from "@mui/material/CircularProgress";
 const ChatPage = (props: any) => {
   // const {state} =  props.location;

@@ -5,7 +5,7 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
-import { localhostUrl, prodUrl } from "../constant";
+import { _localhostUrl, prodUrl } from "../constant";
 const SignUp = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
@@ -76,7 +76,7 @@ const SignUp = () => {
 
   // return emailPattern.test(email);
 
-  const handleClose = (e: any, reason?: string) => {
+  const handleClose = (_e: any, reason?: string) => {
     if (reason && reason === "backdropClick") {
       return; // Prevent closing when clicking outside
     }

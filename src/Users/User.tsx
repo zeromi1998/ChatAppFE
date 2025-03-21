@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
-import { localhostUrl, prodUrl } from "../constant";
+import { _localhostUrl, prodUrl } from "../constant";
 import defaultIMg from "../assets/user.jpg";
 const UsersPage = () => {
   const [usersData, setUserData] = useState([]);

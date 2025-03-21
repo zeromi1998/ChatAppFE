@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./styles.css";
-import { localhostUrl,prodUrl } from "../constant";
+import { _localhostUrl,prodUrl } from "../constant";
 const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = useState({
