@@ -4,7 +4,7 @@ import "./styles.css";
 import { useLocation } from "react-router-dom";
 import { _localhostUrl, prodUrl } from "../constant";
 import CircularProgress from "@mui/material/CircularProgress";
-const ChatPage = (props: any) => {
+const ChatPage = () => {
   // const {state} =  props.location;
   const location = useLocation();
   const state = location.state;
